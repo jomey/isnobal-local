@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 #
 # Run for given day. Date format: 2017-10-01 00:00
-
-source load_conda_env isnoda
+if [[ -n "$CONDA_DEFAULT_ENV" && "$CONDA_DEFAULT_ENV" == "isnoda" ]]; then
+  echo "Conda environment 'isnoda' is active."
+else
+  echo "Conda environment 'isnoda' is not active, exiting script"
+  exit 1
+fi
+#source load_conda_env isnoda
 
 # Initial run, no previous days
-awsm_daily_airflow -c ${HOME}/project-data/iSnobal/ERW/ERW_subset_awsm_$(date -d "${1} + 1 year" +%Y).ini \
-  --no_previous \
-  --start_date $1
+awsm_daily_airflow -c $1 \
+  --start_date $2 \
+  --no_previous

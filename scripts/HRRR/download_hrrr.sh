@@ -18,6 +18,9 @@
 #
 set -e
 
+cd /uufs/chpc.utah.edu/common/home/skiles-group3/HRRR_CBR
+ml wgrib2 
+ 
 export HRRR_VARS='TMP:2 m|RH:2 m|DPT: 2 m|UGRD:10 m|VGRD:10 m|TCDC:|APCP:surface|DSWRF:surface|HGT:surface'
 export HRRR_FC_HOURS=(1 6)
 export HRRR_DAY_HOURS=$(seq 0 23)
